@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLynq Digital - Your Partner in Bringing Ideas to Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #1a73e8;
+            --secondary: #0f4c97;
+            --accent: #00c4cc;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 600;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            color: var(--accent);
+        }
+        
+        /* Enhanced Header & Navigation */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(26, 115, 232, 0.1);
+        }
+        
+        #header.sticky {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            text-decoration: none;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links > li {
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 10px 15px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(26, 115, 232, 0.1);
+        }
+
+        .nav-links a i {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links li:hover a i {
+            transform: rotate(180deg);
+        }
+        
+        /* Enhanced Dropdown with 5cm square images */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 15px;
+            padding: 25px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(30px) scale(0.9);
+            transition: var(--transition);
+            z-index: 100;
+            margin-top: 10px;
+        }
+
+        .nav-links li:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(10px) scale(1);
+        }
+
+        .dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .dropdown-item:hover {
+            background: rgba(26, 115, 232, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .dropdown-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 15px;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover .dropdown-img {
+            transform: scale(1.1);
+        }
+
+        .dropdown-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .dropdown-text p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .dropdown-text .features {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 5px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Enhanced Hero Section with Sliding Images */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.9), rgba(0, 196, 204, 0.8));
+        }
+        
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.7), rgba(0, 196, 204, 0.6));
+        }
+        
+        .slide-info {
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-slide.active .slide-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .slide-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .slide-info p {
+            color: var(--dark);
+            margin: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { top: 40%; left: 60%; animation-delay: 4s; }
+        .floating-element:nth-child(4) { top: 80%; left: 20%; animation-delay: 1s; }
+        .floating-element:nth-child(5) { top: 30%; left: 90%; animation-delay: 3s; }
+        
+        /* About Us Section */
+        .about {
+            background: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Why Choose Us Section */
+        .why-choose {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Enhanced Services Section */
+        .services {
+            background: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 30px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Process Section */
+        .process {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 1;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .process-step h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .process-step p {
+            color: #666;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            background: white;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .portfolio-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.9), rgba(0, 196, 204, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-info {
+            text-align: center;
+            color: white;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .portfolio-item:hover .portfolio-info {
+            transform: translateY(0);
+        }
+        
+        .portfolio-info h3 {
+            margin-bottom: 10px;
+        }
+        
+        /* Tech Stack Section */
+        .tech-stack {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .tech-item h4 {
+            color: var(--primary);
+            margin: 0;
+        }
+        
+        /* Blog Section */
+        .blog {
+            background: white;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 30px;
+        }
+        
+        .blog-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .blog-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .blog-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--primary);
+            margin: 0 0 5px 0;
+        }
+        
+        .author-info p {
+            color: #666;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary);
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-form {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(26, 115, 232, 0.1);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #ccc;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Scroll Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Account & Dashboard Section */
+        .account-dashboard {
+            background: white;
+        }
+
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .account-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .account-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .account-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .account-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .account-card p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .feature-tag {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(0, 196, 204, 0.1));
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* AI & Automation Section */
+        .ai-automation {
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05), rgba(0, 196, 204, 0.05));
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .ai-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .ai-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .ai-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .ai-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .ai-card p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.8), rgba(0, 196, 204, 0.7));
+            z-index: 2;
+        }
+
+        .video-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+        }
+
+        .video-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .video-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .video-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .video-stats .stat-item {
+            text-align: center;
+        }
+
+        .video-stats .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .video-stats .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 50px 0;
+                transition: var(--transition);
+                box-shadow: var(--shadow);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+                margin-top: 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .slide-info {
+                left: 20px;
+                right: 20px;
+                max-width: none;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid,
+            .portfolio-grid,
+            .blog-grid,
+            .testimonials-grid,
+            .account-grid,
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .video-content h2 {
+                font-size: 2rem;
+            }
+
+            .video-content p {
+                font-size: 1rem;
+            }
+
+            .video-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <div class="logo-text">Sky<span>Lynq</span></div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li>
+                    <a href="#services">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <div class="dropdown-grid">
+                            <a href="#cloud-solutions" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="Cloud Solutions" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>Cloud Solutions</h4>
+                                    <p>Secure, scalable cloud infrastructure with AWS, Azure, and Google Cloud</p>
+                                    <div class="features">✓ 99.9% Uptime ✓ Auto-scaling ✓ 24/7 Support</div>
+                                </div>
+                            </a>
+                            <a href="#ai-ml" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="AI & ML" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>AI & Machine Learning</h4>
+                                    <p>Intelligent automation and predictive analytics for your business</p>
+                                    <div class="features">✓ Custom Models ✓ Real-time Processing ✓ Data Insights</div>
+                                </div>
+                            </a>
+                            <a href="#web-development" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="Web Development" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>Web Development</h4>
+                                    <p>Modern, responsive websites and web applications</p>
+                                    <div class="features">✓ React/Vue/Angular ✓ SEO Optimized ✓ Mobile-First</div>
+                                </div>
+                            </a>
+                            <a href="#mobile-apps" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="Mobile Apps" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>Mobile Apps</h4>
+                                    <p>Cross-platform mobile applications for iOS and Android</p>
+                                    <div class="features">✓ Flutter/React Native ✓ App Store Ready ✓ Push Notifications</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#portfolio">Portfolio <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <div class="dropdown-grid">
+                            <a href="#ecommerce" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="E-commerce" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>E-commerce Platforms</h4>
+                                    <p>Complete online stores with payment integration</p>
+                                    <div class="features">✓ Payment Gateway ✓ Inventory ✓ Analytics</div>
+                                </div>
+                            </a>
+                            <a href="#saas" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="SaaS Platforms" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>SaaS Applications</h4>
+                                    <p>Scalable software-as-a-service solutions</p>
+                                    <div class="features">✓ Multi-tenant ✓ API First ✓ Cloud Native</div>
+                                </div>
+                            </a>
+                            <a href="#ai-solutions" class="dropdown-item">
+                                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80" alt="AI Solutions" class="dropdown-img">
+                                <div class="dropdown-text">
+                                    <h4>AI Solutions</h4>
+                                    <p>Custom AI applications and integrations</p>
+                                    <div class="features">✓ Machine Learning ✓ NLP ✓ Computer Vision</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#account-dashboard">Account & Dashboard</a></li>
+                <li><a href="#ai-automation">AI & Automation</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Enhanced Hero Section with Sliding Images -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80')">
+                <div class="slide-info">
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Scalable and secure cloud solutions that grow with your business needs.</p>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80')">
+                <div class="slide-info">
+                    <h3>AI-Powered Solutions</h3>
+                    <p>Harness the power of artificial intelligence to automate and optimize your operations.</p>
+                </div>
+            </div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80')">
+                <div class="slide-info">
+                    <h3>Web Development</h3>
+                    <p>Modern, responsive websites built with cutting-edge technologies.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <h1>Your Partner in Bringing Ideas to Life</h1>
+            <p>We build scalable websites, apps, and AI-powered solutions tailored for your business success. Transform your vision into reality with cutting-edge technology.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn">Get Started Today</a>
+                <a href="#services" class="btn btn-accent">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
+                    <h2>About SkyLynq Digital</h2>
+                    <p>We are a forward-thinking digital agency specializing in cloud solutions, AI integration, and modern web development. Our mission is to empower businesses with innovative technology solutions that drive growth and efficiency.</p>
+                    <p>With years of experience and a passion for excellence, we've helped countless businesses transform their digital presence and achieve their goals through strategic technology implementation.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support Available</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600&q=80" alt="Our Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Why Choose SkyLynq?</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Cutting-Edge Technology</h3>
+                    <p>We use the latest technologies and frameworks to ensure your solutions are future-proof and scalable.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Our team of experienced developers, designers, and strategists work together to deliver exceptional results.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>We understand the importance of time-to-market and deliver projects on schedule without compromising quality.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security First</h3>
+                    <p>Security is built into every solution we create, ensuring your data and users are always protected.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is available around the clock to assist you with any questions or issues.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Scalable Solutions</h3>
+                    <p>Our solutions are designed to grow with your business, adapting to your changing needs and requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Cloud Solutions" class="service-img">
+                    <div class="service-content">
+                        <h3>Cloud Solutions</h3>
+                        <p>Secure, scalable cloud infrastructure and management powered by AWS. We ensure your applications run smoothly, can handle growth, and provide 99.9% uptime with automated backups and disaster recovery.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="AI & ML" class="service-img">
+                    <div class="service-content">
+                        <h3>AI & Machine Learning</h3>
+                        <p>Predictive analytics, automation, and intelligent systems that help your business make data-driven decisions, optimize operations, and stay ahead of the competition with cutting-edge AI technology.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Web Development" class="service-img">
+                    <div class="service-content">
+                        <h3>Web Application Development</h3>
+                        <p>Responsive, fast, and scalable websites built with modern frameworks like React, Angular, Django, and Flask. We create user-friendly interfaces that convert visitors into customers.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Mobile Development" class="service-img">
+                    <div class="service-content">
+                        <h3>Mobile App Development</h3>
+                        <p>Cross-platform mobile applications for iOS and Android using React Native and Flutter. Reach your customers wherever they are with intuitive, high-performance mobile experiences.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Digital Marketing" class="service-img">
+                    <div class="service-content">
+                        <h3>Digital Marketing</h3>
+                        <p>Comprehensive digital marketing strategies including SEO, social media marketing, content creation, and PPC campaigns to boost your online presence and drive qualified leads.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="service-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Data Analytics" class="service-img">
+                    <div class="service-content">
+                        <h3>Data Analytics</h3>
+                        <p>Transform your raw data into actionable insights with our advanced analytics solutions. We help you understand your customers, optimize processes, and make informed business decisions.</p>
+                        <a href="#contact" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Process</h2>
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Discovery & Planning</h3>
+                    <p>We start by understanding your business goals, target audience, and technical requirements to create a comprehensive project roadmap.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Design & Prototyping</h3>
+                    <p>Our design team creates wireframes and prototypes to visualize the user experience and ensure optimal functionality.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Our developers bring the designs to life using cutting-edge technologies and best practices for performance and security.</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <h3>Testing & Launch</h3>
+                    <p>Rigorous testing ensures everything works perfectly before we launch your solution and provide ongoing support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="E-commerce Platform" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>E-commerce Platform</h3>
+                            <p>Complete online store with payment integration and inventory management</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Analytics Dashboard" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Analytics Dashboard</h3>
+                            <p>Real-time data visualization and business intelligence platform</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Enterprise Solution" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Enterprise CRM</h3>
+                            <p>Custom customer relationship management system for large organizations</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Mobile App" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Mobile Banking App</h3>
+                            <p>Secure mobile banking application with biometric authentication</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="AI Solution" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>AI Chatbot Platform</h3>
+                            <p>Intelligent customer service automation with natural language processing</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-item animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" alt="Web Platform" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info">
+                            <h3>Learning Management System</h3>
+                            <p>Comprehensive online education platform with video streaming</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Technologies We Use</h2>
+            <div class="tech-grid">
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-react"></i></div>
+                    <h4>React</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-angular"></i></div>
+                    <h4>Angular</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-node-js"></i></div>
+                    <h4>Node.js</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-python"></i></div>
+                    <h4>Python</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-aws"></i></div>
+                    <h4>AWS</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-docker"></i></div>
+                    <h4>Docker</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fas fa-database"></i></div>
+                    <h4>MongoDB</h4>
+                </div>
+                <div class="tech-item animate-on-scroll">
+                    <div class="tech-icon"><i class="fab fa-js-square"></i></div>
+                    <h4>JavaScript</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Latest News & Insights</h2>
+            <div class="blog-grid">
+                <div class="blog-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" alt="AI Trends" class="blog-img">
+                    <div class="blog-content">
+                        <div class="blog-date">December 15, 2023</div>
+                        <h3>The Future of AI in Business</h3>
+                        <p>Explore how artificial intelligence is transforming industries and creating new opportunities for businesses to innovate and grow.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" alt="Cloud Computing" class="blog-img">
+                    <div class="blog-content">
+                        <div class="blog-date">December 10, 2023</div>
+                        <h3>Cloud Migration Best Practices</h3>
+                        <p>Learn the essential strategies and considerations for successfully migrating your business applications to the cloud.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" alt="Web Development" class="blog-img">
+                    <div class="blog-content">
+                        <div class="blog-date">December 5, 2023</div>
+                        <h3>Modern Web Development Trends</h3>
+                        <p>Discover the latest trends and technologies shaping the future of web development and user experience design.</p>
+                        <a href="#" class="btn">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-text">SkyLynq transformed our business with their cloud solutions. The scalability and security they provided exceeded our expectations. Our operations are now more efficient than ever.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="John Smith" class="author-img">
+                        <div class="author-info">
+                            <h4>John Smith</h4>
+                            <p>CEO, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-text">The AI solution they developed for us has revolutionized our customer service. We've seen a 40% increase in customer satisfaction and significant cost savings.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Sarah Johnson" class="author-img">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>CTO, InnovateCo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <p class="testimonial-text">Their web development team created a stunning website that perfectly represents our brand. The attention to detail and user experience is outstanding.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" alt="Michael Brown" class="author-img">
+                        <div class="author-info">
+                            <h4>Michael Brown</h4>
+                            <p>Marketing Director, BrandPlus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Let's Start Your Project</h3>
+                    <p>Ready to transform your business with cutting-edge technology? Contact us today to discuss your project requirements and get a free consultation.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>0552327706</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contact@skylinq.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Riyadh, Saudi Arabia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form animate-on-scroll">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <option value="cloud">Cloud Solutions</option>
+                            <option value="ai">AI & Machine Learning</option>
+                            <option value="web">Web Development</option>
+                            <option value="mobile">Mobile Development</option>
+                            <option value="marketing">Digital Marketing</option>
+                            <option value="analytics">Data Analytics</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project requirements..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Account & Dashboard Section -->
+    <section id="account-dashboard" class="account-dashboard">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Account & Dashboard</h2>
+            <div class="account-grid">
+                <div class="account-card animate-on-scroll">
+                    <div class="account-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>User Registration & Login</h3>
+                    <p>Secure user authentication system with multi-factor authentication, social login options, and role-based access control for different user types.</p>
+                    <div class="features-list">
+                        <span class="feature-tag">✓ Multi-factor Auth</span>
+                        <span class="feature-tag">✓ Social Login</span>
+                        <span class="feature-tag">✓ Role Management</span>
+                        <span class="feature-tag">✓ Password Recovery</span>
+                    </div>
+                </div>
+
+                <div class="account-card animate-on-scroll">
+                    <div class="account-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Profile Dashboards</h3>
+                    <p>Comprehensive dashboard to track usage, subscriptions, and project progress with real-time analytics and personalized insights.</p>
+                    <div class="features-list">
+                        <span class="feature-tag">✓ Usage Analytics</span>
+                        <span class="feature-tag">✓ Project Tracking</span>
+                        <span class="feature-tag">✓ Performance Metrics</span>
+                        <span class="feature-tag">✓ Custom Reports</span>
+                    </div>
+                </div>
+
+                <div class="account-card animate-on-scroll">
+                    <div class="account-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Subscription Management</h3>
+                    <p>Complete subscription and payment management system with billing history, plan upgrades, and automated invoicing.</p>
+                    <div class="features-list">
+                        <span class="feature-tag">✓ Stripe Integration</span>
+                        <span class="feature-tag">✓ Auto Billing</span>
+                        <span class="feature-tag">✓ Plan Upgrades</span>
+                        <span class="feature-tag">✓ Invoice History</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI & Automation Section -->
+    <section class="ai-automation">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">AI & Automation Features</h2>
+            <div class="ai-grid">
+                <div class="ai-card animate-on-scroll">
+                    <div class="ai-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Recommendation Systems</h3>
+                    <p>AI-powered recommendation engine that suggests services, content, and features based on user behavior, preferences, and usage patterns.</p>
+                    <div class="features-list">
+                        <span class="feature-tag">✓ Behavior Analysis</span>
+                        <span class="feature-tag">✓ Personalized Suggestions</span>
+                        <span class="feature-tag">✓ Machine Learning</span>
+                        <span class="feature-tag">✓ Real-time Updates</span>
+                    </div>
+                </div>
+
+                <div class="ai-card animate-on-scroll">
+                    <div class="ai-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Dynamic AI FAQs</h3>
+                    <p>Intelligent FAQ system that learns from user interactions and provides contextual answers beyond traditional chatbots.</p>
+                    <div class="features-list">
+                        <span class="feature-tag">✓ Context Aware</span>
+                        <span class="feature-tag">✓ Self Learning</span>
+                        <span class="feature-tag">✓ Natural Language</span>
+                        <span class="feature-tag">✓ Continuous Improvement</span>
+                    </div>
+                </div>
+
+                <div class="ai-card animate-on-scroll">
+                    <div class="ai-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analytics Dashboards</h3>
+                    <p>Advanced analytics platform showing key metrics, user insights, and business intelligence for data-driven decision making.</p>
+                    <div class="features-list">
+                        <span class="feature-tag">✓ Real-time Metrics</span>
+                        <span class="feature-tag">✓ Custom Reports</span>
+                        <span class="feature-tag">✓ Data Visualization</span>
+                        <span class="feature-tag">✓ Predictive Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background Video Section -->
+    <section class="video-section">
+        <div class="video-background">
+            <video autoplay muted loop class="background-video">
+                <source src="https://player.vimeo.com/external/370331493.sd.mp4?s=b9a278569d34c1c8c2b6bbd3250b2cdc9e6e8e3e&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        <div class="container video-content">
+            <h2 class="animate-on-scroll">Experience Innovation in Action</h2>
+            <p class="animate-on-scroll">Watch how our cutting-edge solutions transform businesses and drive digital success through intelligent automation and seamless user experiences.</p>
+            <div class="video-stats">
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projects Automated</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Efficiency Increase</span>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">AI Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Sky<span>Lynq</span></div>
+                    <p>Your partner in bringing ideas to life through innovative digital solutions. We transform businesses with cutting-edge technology and exceptional service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Cloud Solutions</a></li>
+                        <li><a href="#services">AI & Machine Learning</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Mobile App Development</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                        <li><a href="#services">Data Analytics</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Platform Features</h3>
+                    <ul>
+                        <li><a href="#account-dashboard">Account & Dashboard</a></li>
+                        <li><a href="#ai-automation">AI & Automation</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0552327706</li>
+                        <li><i class="fas fa-envelope"></i> contact@skylinq.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SkyLynq Digital. All rights reserved. | Designed with ❤️ for your success</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky Header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+        
+        // Enhanced Hero Slider with Information
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        let currentHeroSlide = 0;
+        
+        function showHeroSlide(n) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            currentHeroSlide = (n + heroSlides.length) % heroSlides.length;
+            heroSlides[currentHeroSlide].classList.add('active');
+        }
+        
+        function nextHeroSlide() {
+            showHeroSlide(currentHeroSlide + 1);
+        }
+        
+        // Auto slide every 4 seconds
+        setInterval(nextHeroSlide, 4000);
+        
+        // Initialize the first slide
+        showHeroSlide(0);
+        
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                }
+            });
+        });
+        
+        // Contact Form Handling
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Simple validation
+                if (!data.name || !data.email || !data.message) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Simulate form submission
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+        
+        // Add loading animation for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+        });
+        
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = counter.textContent.replace(/\d+/, target);
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                    }
+                }, 20);
+            });
+        }
+        
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.about-stats');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            statsObserver.observe(statsSection);
+        }
+        
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+        
+        // Add hover effects for service cards
+        document.querySelectorAll('.service-card, .portfolio-item, .blog-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
